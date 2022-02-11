@@ -76,7 +76,9 @@ int main() {
     system("cls");
     cout << "Enter choice" << endl;
     cout << "1.Insert Nodes& Branches" << endl;
-    cout << "2.Print data" << endl;
+    cout << "2.Traverse In PreOrder" << endl;
+    cout << "3.Traverse In InOrder"<<endl;
+    cout<<"4.Traverse in PostOrder"<<endl;
     cin >> choice;
     switch (choice) {
     case 1: {
@@ -92,6 +94,21 @@ int main() {
     case 2: {
       PrintDataPreOrder(&rootNode);
       system("pause");
+      break;
+    }
+    case 3:{
+      PrintDataInOrder(&rootNode);
+       system("pause");
+      break;
+    }
+    case 4:{
+        PrintDataPostOrder(&rootNode);
+         system("pause");
+        break;
+    }
+    case 5:{
+
+        break;
     }
     }
   }
