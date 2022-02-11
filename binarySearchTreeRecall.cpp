@@ -71,31 +71,43 @@ void PrintDataInOrder(node **rootNode) {
     return;
   }
 }
-void DeleteNode(node **rootNode, int data=0){
+void SearchAndDeleteLeafNode(node **rootNode, int data=0){
 node *temp;
 if(*rootNode!=NULL){
   temp=*rootNode;
 if(temp->data>data){
   cout<<"goind left"<<endl;
-  if(temp->left->data==data){
+  if((temp->left->data==data & (temp->left->right==NULL & temp->left->left==NULL))==1){
+    if(temp->left->right!=NULL or temp->left->left!=NULL){
+      cout<<"The searched data isnt a leaf"<<endl;
+      return;
+    }
     cout<<"Data Found:"<<temp->left->data<<endl;
     temp->left=NULL;
     return;
   }
-  DeleteNode(&temp->left,data);
+  SearchAndDeleteLeafNode(&temp->left,data);
 }
 else{
+  if(temp->data==data){
+    cout<<"Cannot delete Nodes With Branches"<<endl;
+    return;
+  }
     cout<<"goind right"<<endl;
-if(temp->right->data==data){
+if((temp->right->data==data & (temp->right->right==NULL & temp->right->left==NULL))==1){
+    if(temp->right->left!=NULL | temp->right->left!=NULL){
+      cout<<"The searched data isnt a leaf"<<endl;
+      return;
+    }
     cout<<"Data Found:"<<temp->right->data<<endl;
     temp->right=NULL;
     return;
   }
-  DeleteNode(&temp->right,data);
+  SearchAndDeleteLeafNode(&temp->right,data);
 }
 
 }
-
+return;
 }
 int main() {
   struct node * rootNode = NULL;
@@ -143,7 +155,7 @@ int main() {
     case 5:{
       cout<<"Enter Data To Be Deleted:";
       cin>>d;
-      DeleteNode(&rootNode,d);
+      SearchAndDeleteLeafNode(&rootNode,d);
       system("pause");
         break;
     }
